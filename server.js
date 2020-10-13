@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 5000
-
+var cors = require('cors');
 //init middleware first
 app.use(require('./middleware/logger'))
 app.use(express.json())
@@ -17,5 +17,10 @@ app.get('*', (req, res) => {
   res.status(404).send('Not found')
 })
 
+app.use(cors({
+  origin: '*'
+}));
+
 //listen on port
 app.listen(port, () => console.log(`Listening on ${port}`))
+ 
