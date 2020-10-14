@@ -1,15 +1,16 @@
 const express = require('express')
 var cors = require('cors');
+const { v4: uuidv4 } = require('uuid');
 const router = express.Router()
 var nodemailer = require('nodemailer');
+var AWS = require('aws-sdk');
 
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'skydev100@gmail.com',
-    pass: 'F4st3r1991(*)'
-  }
-});
+AWS.config.update({
+  accessKeyId: "AKIAI352XKEX4A4ZKRYQ",
+  secretAccessKey: "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",
+  region: 'eu-west-3'
+})
+const s3 = new AWS.S3()
 
 var corsOptions = {
   origin: '*',
@@ -20,21 +21,25 @@ router.post('/', cors(corsOptions), (req, res) => {
 
   const { content } = req.body
 
-  var mailOptions = {
-    from: 'skydev100@gmail.com',
-    to: 'skydev100@gmail.com',
-    subject: 'Sending Email using Node.js',
-    text: req.body.data
+  var s3Bucket = new AWS.S3( { params: {Bucket: 'send.images'} } );
+
+  var buf = Buffer.from(req.body.data.replace(/^data:image\/\w+;base64,/, ""),'base64');
+
+  var data = {
+    Key: uuidv4(),
+    Body: buf,
+    ContentEncoding: 'base64',
+    ContentType: 'image/jpeg'
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
+  s3Bucket.putObject(data, function(err, data){
+    if (err) {
+      console.log(err);
+      console.log('Error uploading data: ', data);
     } else {
-      console.log('Email sent: ' + info.response);
+      console.log('succesfully uploaded the image!');
     }
   });
-
   res.json("message")
 })
 

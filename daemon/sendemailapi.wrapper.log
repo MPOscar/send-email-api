@@ -1,2 +1,0 @@
-2020-10-14 09:20:10 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\GS1\AppData\Roaming\nvm\v12.16.0\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file "D:\PROJECTS\SEND EMAIL\send-email-api\server.js" --log "send-email-api wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
-2020-10-14 09:20:10 - Started 16420
