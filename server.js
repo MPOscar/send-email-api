@@ -6,12 +6,12 @@ const port = process.env.PORT || 5000
 
 //init middleware first
 app.use(require('./middleware/logger'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json({limit: '100mb', extended: true}))
+app.use(express.urlencoded({limit: '100mb', extended: true}))
 
 app.options('*', cors());
-app.use(bodyParser.json({limit: '50mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
+app.use(bodyParser.json({limit: '100mb', extended: true}))
+app.use(bodyParser.urlencoded({limit: '100mb', extended: true}))
 
 //routes
 app.get('/', (req, res) => {

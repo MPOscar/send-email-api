@@ -1,0 +1,25 @@
+<service>
+	<id>sendemailapi.exe</id>
+	<name>send-email-api</name>
+	<description>send-email</description>
+	<executable>C:\Program Files\nodejs\node.exe</executable>
+	<logmode>rotate</logmode>
+	<argument>--harmony</argument>
+	<argument>C:\Users\GS1\AppData\Roaming\nvm\v12.16.0\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js</argument>
+	<argument>--file</argument>
+	<argument>D:\PROJECTS\SEND EMAIL\send-email-api\server.js</argument>
+	<argument>--log</argument>
+	<argument>send-email-api wrapper</argument>
+	<argument>--grow</argument>
+	<argument>0.25</argument>
+	<argument>--wait</argument>
+	<argument>1</argument>
+	<argument>--maxrestarts</argument>
+	<argument>3</argument>
+	<argument>--abortonerror</argument>
+	<argument>n</argument>
+	<argument>--stopparentfirst</argument>
+	<argument>undefined</argument>
+	<stoptimeout>30sec</stoptimeout>
+	<workingdirectory>C:\Users\GS1</workingdirectory>
+</service>
